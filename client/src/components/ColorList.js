@@ -11,6 +11,9 @@ const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
+  //add Color state
+  const [color, setColor] = useState(initialColor)
+
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
@@ -32,6 +35,13 @@ const ColorList = ({ colors, updateColors }) => {
       .then(res => console.log('Deleted Color'))
       .catch(err => console.log(err))
   };
+
+  //add color to api
+  const handleAdd = () => {
+    api().post('/colors', color)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
 
   return (
     <div className="colors-wrap">
@@ -88,6 +98,12 @@ const ColorList = ({ colors, updateColors }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+      <form onSubmit={handleAdd}>
+        <input type="text" name="color" placeholder="Color" onChange={e => setColor({...color, color: e.target.value})}/>
+        <input type="text" name="code" placeholder="Hex Code"  onChange={e => setColor({...color, code: {hex: e.target.value}})}/>
+
+        <button type="submit">Add Color</button>
+      </form>
     </div>
   );
 };
