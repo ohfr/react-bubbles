@@ -14,6 +14,10 @@ const Login = (props) => {
       .then(res => {
         localStorage.setItem('token', res.data.payload)
         props.history.push('/BubblePage')
+        setUser({
+          username: '',
+          password: ''
+        })
       })
       .catch(err => console.log(err))
   }
