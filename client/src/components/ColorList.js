@@ -6,7 +6,7 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
+const ColorList = ({ colors, updateColors, deleted, setDeleted }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
@@ -32,7 +32,7 @@ const ColorList = ({ colors, updateColors }) => {
   const deleteColor = color => {
     // make a delete request to delete this color
     api().delete(`/colors/${color.id}`)
-      .then(res => console.log('Deleted Color'))
+      .then(res => setDeleted(!deleted))
       .catch(err => console.log(err))
   };
 
@@ -102,7 +102,7 @@ const ColorList = ({ colors, updateColors }) => {
         <input type="text" name="color" placeholder="Color" onChange={e => setColor({...color, color: e.target.value})}/>
         <input type="text" name="code" placeholder="Hex Code"  onChange={e => setColor({...color, code: {hex: e.target.value}})}/>
 
-        <button type="submit">Add Color</button>
+        <button type="submit">Add Color </button>
       </form>
     </div>
   );
