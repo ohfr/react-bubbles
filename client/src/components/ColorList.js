@@ -25,7 +25,11 @@ const ColorList = ({ colors, updateColors, deleted, setDeleted }) => {
     // think about where will you get the id from...
     // where is is saved right now?
     api().put(`/colors/${colorToEdit.id}`, colorToEdit)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        setEditing(false);
+        setDeleted(!deleted);
+      })
       .catch(err => console.log(err))
   };
 
