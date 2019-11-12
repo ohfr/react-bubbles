@@ -14,6 +14,8 @@ body,
   font-family: "Montserrat", sans-serif;
   text-align: center;
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   svg {
     height: 100%;
@@ -63,6 +65,7 @@ body,
 form {
   margin-top: 60px;
   display: flex;
+  align-items: center;
   flex-direction: column;
 
   legend {
@@ -80,6 +83,11 @@ form {
   }
 
   input {
+    width: 30%;
+    height: 25px;
+    margin-bottom: 20px;
+  }
+  button {
     width: 100px;
   }
 }
